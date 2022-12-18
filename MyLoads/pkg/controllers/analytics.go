@@ -26,5 +26,10 @@ func (c *Controller) GetOwnerInfo(context *gin.Context) {
 		return
 	}
 
-	c.s.GetInfoOwnerByCompanyId(company.Id)
+	owner, err := c.s.GetInfoOwnerByCompanyId(company.Id)
+	if err != nil {
+		context.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+
+	context.JSON(200, gin.H{"owner": owner})
 }

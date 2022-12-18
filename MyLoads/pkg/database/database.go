@@ -16,7 +16,7 @@ type ServerManager interface {
 	GetUserByTokenId(id *int64) (models.Person, error)
 	GetCompanyByUser(id int64) (models.CompanyModel, error)
 	GetUsersByCompany(id int64) ([]models.Person, error)
-	GetInfoOwnerByCompanyId(id int64)
+	GetInfoOwnerByCompanyId(id int64) (*models.Owner, error)
 }
 
 type Server struct {
