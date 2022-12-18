@@ -12,9 +12,10 @@ type Person struct {
 	RegistrationComplete bool   `json:"registration_complete"`
 	Role                 int    `json:"role"`
 	Source               int    `json:"source"`
-	CompanyId            int64  `json:"company_id" gorm:"foreignKey:Id"`
+	CompanyId            int64  `json:"company_id" gorm:"foreignKey:id"`
 	ChiefId              int64  `json:"chief_id"`
-	InfoId               int64  `json:"info_id"`
+	InfoId int64 `json:"info_id"`
+	Info                 *UserInfo  `json:"user_info" gorm:"foreignKey:id"`
 	UseMySign            bool   `json:"use_my_sign"`
 	ProposedCompanyId    int64  `json:"proposed_company_id"`
 }

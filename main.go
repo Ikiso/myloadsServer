@@ -27,7 +27,7 @@ func startServices() {
 
 	r := initRouter(c)
 
-	err = r.Run()
+	err = r.Run("26.252.6.100:17850")
 	if err != nil {
 		return
 	}
@@ -35,6 +35,7 @@ func startServices() {
 
 func initRouter(c controllers.ControllerManager) *gin.Engine {
 	router := gin.Default()
+	router.Use(middlewares.CORSMiddleware())
 	api := router.Group("/api")
 	{
 		api.POST("/login", c.Login)
