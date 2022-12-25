@@ -13,7 +13,7 @@ func (s *Server) GetAllUser() ([]models.Person, error) {
 		return persons, err
 	}
 
-	for i, _ := range persons {
+	for i := range persons {
 		var userInfo *models.UserInfo
 		err = s.Db["MONOLITH"].Table("user_info").Find(&userInfo, "id = ?", persons[i].InfoId).Error
 		if err != nil {
@@ -66,13 +66,20 @@ func (s *Server) GetUsersByCompany(id int64) ([]models.Person, error) {
 		return persons, errors.Errorf("Cannot be find user by id %v ", err)
 	}
 
-	for i, _ := range persons {
+	for i := range persons {
 		var userInfo *models.UserInfo
 		err = s.Db["MONOLITH"].Table("user_info").Find(&userInfo, "id = ?", persons[i].InfoId).Error
 		if err != nil {
 			return persons, err
 		}
 		persons[i].Info = userInfo
+
+		err = s.Db["MONOLITH"].Table("user_info").Find(&userInfo, "id = ?", persons[i].ChiefId).Error
+		if err != nil {
+			return persons, err
+		}
+		persons[i].ChiefLastName = userInfo.LastName
+		persons[i].ChiefLastName = userInfo.FirstName
 	}
 
 	return persons, nil

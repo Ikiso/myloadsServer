@@ -8,4 +8,5 @@ type Owner struct {
 	CargoesWithoutACarrier   int64   `json:"cargoes_without_a_carrier"`
 	AverageStartingPrice     float64 `json:"average_starting_price"`
 	AverageFinalFreightPrice float64 `json:"average_final_freight_price"`
+	CompanyID                float64 `json:"company_id"`
 }

@@ -21,7 +21,7 @@ func startServices() {
 
 	t := token.NewManager(config.SecretKey)
 
-	db := database.ConnectDB(config.BDMonolith, config.BDAction, config.BDPayment)
+	db := database.ConnectDB(config.BDMonolith, config.BDAuction, config.BDPayment)
 	database.NewServer(db, t)
 	c := controllers.NewController(database.NewServer(db, t))
 
@@ -45,9 +45,12 @@ func initRouter(c controllers.ControllerManager) *gin.Engine {
 			authorized.GET("/person", c.GetUserByTokenID)
 			authorized.GET("/persons", c.GetUsersByCompany)
 			authorized.GET("/company", c.GetCompanyByUser)
-			authorized.GET("/analytic", c.GetOwnerInfo)
+			//	authorized.GET("/analytic", c.GetOwnersInfo, c.GetCurrierInfo)
+			authorized.GET("/analytic", c.GetCurrierInfo)
+			//authorized.GET("/analytic", c.GetOwnersInfo)
 		}
 		api.GET("/person:id", c.GetUserByID)
+		api.GET("/companies", c.GetCompanies)
 	}
 	return router
 }
