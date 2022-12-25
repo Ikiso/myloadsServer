@@ -12,7 +12,9 @@ type ControllerManager interface {
 	GetUserByID(context *gin.Context)
 	GetCompanyByUser(context *gin.Context)
 	GetUsersByCompany(context *gin.Context)
-	GetOwnerInfo(context *gin.Context)
+	GetOwnersInfo(context *gin.Context)
+	GetCompanies(context *gin.Context)
+	GetCurrierInfo(context *gin.Context)
 }
 
 type Controller struct {

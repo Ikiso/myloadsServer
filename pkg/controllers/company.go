@@ -25,3 +25,15 @@ func (c *Controller) GetCompanyByUser(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{"company": company})
 
 }
+
+func (c *Controller) GetCompanies(context *gin.Context) {
+
+	companies, err := c.s.GetCompanies()
+	if err != nil {
+		context.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"companies": companies})
+
+}

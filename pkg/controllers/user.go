@@ -70,7 +70,7 @@ func (c *Controller) GetUsersByCompany(context *gin.Context) {
 		return
 	}
 
-	persons, err := c.s.GetUsersByCompany(company.Id)
+	persons, err := c.s.GetUsersByCompany(company.ID)
 	if err != nil {
 		context.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return

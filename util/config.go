@@ -4,7 +4,7 @@ import "github.com/spf13/viper"
 
 type Config struct {
 	BDMonolith string `mapstructure:"BD_MONOLITH"`
-	BDAction   string `mapstructure:"BD_ACTION"`
+	BDAuction  string `mapstructure:"BD_AUCTION"`
 	BDPayment  string `mapstructure:"BD_PAYMENT"`
 	SecretKey  string `mapstructure:"SECRET_KEY"`
 }

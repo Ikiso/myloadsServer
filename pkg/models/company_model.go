@@ -1,7 +1,7 @@
 package models
 
 type CompanyModel struct {
-	Id                         int64  `json:"id" gorm:"primaryKey"`
+	ID                         int64  `json:"id" gorm:"primaryKey"`
 	BankName                   string `json:"bank_name"`
 	Bik                        string `json:"bik"`
 	BillingAccount             string `json:"billing_account"`

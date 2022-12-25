@@ -16,7 +16,10 @@ type ServerManager interface {
 	GetUserByTokenId(id *int64) (models.Person, error)
 	GetCompanyByUser(id int64) (models.CompanyModel, error)
 	GetUsersByCompany(id int64) ([]models.Person, error)
-	GetInfoOwnerByCompanyId(id int64) (*models.Owner, error)
+	GetInfoOwners() ([]models.SHIPPER, error)
+	GetCompanies() ([]models.CompanyModel, error)
+	GetInfoCarriers() ([]models.CarrierOut, error)
+	GetAllBids() ([]models.Bid, []models.Bid, error)
 }
 
 type Server struct {
@@ -30,12 +33,12 @@ func NewServer(db map[string]*gorm.DB, token token.TokenManager) ServerManager {
 
 var err error
 
-func ConnectDB(BDMonolith, BDAction, BDPayment string) map[string]*gorm.DB {
+func ConnectDB(BDMonolith, BDAuction, BDPayment string) map[string]*gorm.DB {
 
 	db := make(map[string]*gorm.DB)
 
 	db["MONOLITH"], err = gorm.Open(postgres.Open(BDMonolith))
-	db["ACTION"], err = gorm.Open(postgres.Open(BDAction))
+	db["AUCTION"], err = gorm.Open(postgres.Open(BDAuction))
 	db["PAYMENT"], err = gorm.Open(postgres.Open(BDPayment))
 
 	if err != nil {
