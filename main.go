@@ -45,9 +45,8 @@ func initRouter(c controllers.ControllerManager) *gin.Engine {
 			authorized.GET("/person", c.GetUserByTokenID)
 			authorized.GET("/persons", c.GetUsersByCompany)
 			authorized.GET("/company", c.GetCompanyByUser)
-			//	authorized.GET("/analytic", c.GetOwnersInfo, c.GetCurrierInfo)
-			authorized.GET("/analytic", c.GetCurrierInfo)
-			//authorized.GET("/analytic", c.GetOwnersInfo)
+			authorized.GET("/analytic/currier", c.GetCurrierInfo)
+			authorized.GET("/analytic/owner", c.GetOwnersInfo)
 		}
 		api.GET("/person:id", c.GetUserByID)
 		api.GET("/companies", c.GetCompanies)

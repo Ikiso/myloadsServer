@@ -11,6 +11,6 @@ type Carrier struct {
 }
 
 type CarrierOut struct {
-	CarrierInfo Carrier `json:"carrier-info"`
-	CompanyInfo Bid     `json:"company-info"`
+	CarrierInfo Carrier      `json:"carrier_info"`
+	CompanyInfo CompanyModel `json:"company_info"`
 }
