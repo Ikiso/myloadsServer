@@ -27,7 +27,7 @@ func startServices() {
 
 	r := initRouter(c)
 
-	err = r.Run("26.252.6.100:17850")
+	err = r.Run(config.PID)
 	if err != nil {
 		return
 	}
