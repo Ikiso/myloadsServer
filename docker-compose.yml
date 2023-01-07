@@ -2,17 +2,26 @@ version: '3.9'
 
 services:
   my-loads:
+    container_name: my_loads-server
     build: ./
-    command: ./wait-for-postgres.sh 172.18.0.1 ./my-loads
     ports:
-      - "8085:8000"
+      - "8000:8000"
     depends_on:
       - db
     environment:
-      BD_MONOLITH: 'host=db user=tsvse dbname=monolith password=22war398 port=5432'
-      BD_AUCTION: 'host=db user=tsvse dbname=auction_service password=22war398 port=5432'
-      BD_PAYMENT: 'host=db user=tsvse dbname=payment_service password=22war398 port=5432'
+      BD_MONOLITH: 'host=172.19.0.2 user=postgres dbname=monolith password=22war398 port=5432'
+      BD_AUCTION: 'host=172.19.0.2 user=postgres dbname=auction_service password=22war398 port=5432'
+      BD_PAYMENT: 'host=172.19.0.2 user=postgres dbname=payment_service password=22war398 port=5432'
       DB_PASSWORD: "22war398"
+      PID: "172.19.0.4:8000"
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G
+    networks:
+      - db
 
   db:
     container_name: postgres_container
@@ -21,6 +30,7 @@ services:
     volumes:
       - ./.database/postgres/scheme:/var/lib/postgresql/data
       - ./pkg/database/sql/dump:/docker-entrypoint-initdb.d
+      - ./pkg/database/sql/data:/home/data
     environment:
       POSTGRES_DB: "postgres"
       POSTGRES_USER: "postgres"
@@ -51,6 +61,7 @@ services:
     volumes:
       - ./pgadmin:/var/lib/pgadmin
       - ./pkg/database/sql/dump:/home/dump
+      - ./pkg/database/sql/data:/home/data
     ports:
       - "5050:80"
     restart: unless-stopped

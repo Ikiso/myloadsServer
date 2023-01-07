@@ -3,3 +3,5 @@
 /pgadmin/
 /pkg/database/sql/scheme/
 /comm
+/pkg/database/sql/data/
+/pkg/database/sql/dump/
