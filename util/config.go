@@ -7,6 +7,7 @@ type Config struct {
 	BDAuction  string `mapstructure:"BD_AUCTION"`
 	BDPayment  string `mapstructure:"BD_PAYMENT"`
 	SecretKey  string `mapstructure:"SECRET_KEY"`
+	PID        string `mapstructure:"PID"`
 }
 
 func LoadConfig(path string) (c Config, e error) {
