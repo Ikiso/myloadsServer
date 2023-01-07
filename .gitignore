@@ -1,0 +1,5 @@
+/.database/postgres/
+/.idea/
+/pgadmin/
+/pkg/database/sql/scheme/
+/comm
