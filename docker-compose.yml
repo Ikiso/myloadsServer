@@ -45,8 +45,8 @@ services:
     container_name: pgadmin_container
     image: dpage/pgadmin4:latest
     environment:
-      PGADMIN_DEFAULT_EMAIL: "tsvve@bk.ru"
-      PGADMIN_DEFAULT_PASSWORD: "22war398"
+      PGADMIN_DEFAULT_EMAIL: "email@bk.ru"
+      PGADMIN_DEFAULT_PASSWORD: "pass"
       PGADMIN_CONFIG_SERVER_MODE: "False"
     volumes:
       - ./pgadmin:/var/lib/pgadmin
