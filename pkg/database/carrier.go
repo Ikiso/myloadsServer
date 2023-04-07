@@ -13,8 +13,6 @@ func (s *Server) GetInfoCarriers() ([]models.CarrierOut, error) {
 		return nil, err
 	}
 
-	//TODO: попытаться сделать одним запросом (агрегаты и так юзаются)
-
 	for i, b := range nonDubBids {
 		var company models.CompanyModel
 		err = s.Db["AUCTION"].Table("cargo, bid").Select("COUNT(deleted) as deleted_cargo").
